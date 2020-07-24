@@ -1,13 +1,24 @@
-import React from "react";
+import React, { FC } from "react";
+import clsx from "clsx";
 
-import BottomNavigation from "../BottomNavigation";
+import Typography from "@material-ui/core/Typography";
 
-const Header = () => {
+import Navigation from "../Navigation";
+import Centered from "../Centered";
+
+import { HeaderProps } from "./types";
+import useStyles from "./styles";
+
+const Header: FC<HeaderProps> = ({ className }) => {
+  const classes = useStyles();
   return (
-    <div style={{ textAlign: "center" }}>
-      <h1>Demo Event Planner</h1>
-      <BottomNavigation />
-    </div>
+    <Centered className={clsx(className, classes.header)}>
+      <Typography variant="h4" className={classes.title}>
+        <b>Demo Event Planner</b>
+      </Typography>
+      <Navigation />
+    </Centered>
   );
 };
+
 export default Header;

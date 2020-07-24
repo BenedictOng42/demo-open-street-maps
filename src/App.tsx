@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 import { ThemeProvider } from "@material-ui/core";
@@ -7,14 +7,15 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { FirebaseProvider } from "./contexts/FirebaseContext";
 import { AuthenticationProvider } from "./contexts/AuthenticationContext";
 
-import MapsPage from "./pages/MapsPage";
-import EventsPage from "./pages/EventsPage";
 import LoginGate from "./containers/LoginGate";
-
-import { firebaseConfig, theme } from "./config";
 import Header from "./components/Header";
 
-const App = () => {
+import MapsPage from "./pages/MapsPage";
+import EventsPage from "./pages/EventsPage";
+
+import { firebaseConfig, theme } from "./config";
+
+const App: FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -24,7 +25,7 @@ const App = () => {
             <BrowserRouter>
               <Header />
               <Switch>
-                <Route exact path="/maps">
+                <Route exact path="/maps/:id?">
                   <MapsPage />
                 </Route>
                 <Route exact path="/events">
