@@ -7,5 +7,8 @@ export default makeStyles<Theme>((theme) =>
         marginBottom: theme.spacing(2),
       },
     },
+    actions: {
+      justifyContent: "flex-end",
+    },
   })
 );
