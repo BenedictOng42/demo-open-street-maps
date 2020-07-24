@@ -1,4 +1,4 @@
-import { createMuiTheme } from '@material-ui/core';
+import { unstable_createMuiStrictModeTheme as createMuiTheme } from "@material-ui/core";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyBoOOaiWPSGDj4Xf0muJSrdB9RaIS7d1D4",
@@ -12,5 +12,9 @@ export const firebaseConfig = {
 };
 
 export const theme = createMuiTheme({
-
+  palette: {
+    primary: {
+      main: "#1976d2",
+    },
+  },
 });
