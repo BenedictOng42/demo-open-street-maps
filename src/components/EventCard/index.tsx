@@ -18,12 +18,17 @@ import useStyles from "./styles";
 
 const EventCard: FC<EventCardProps> = ({ event, onOptions }) => {
   const classes = useStyles();
+  const past = event && moment(event?.date.toDate()).isBefore();
   return (
     <Card className={classes.card}>
       <CardHeader
+        titleTypographyProps={{
+          color: past ? "textSecondary" : undefined,
+        }}
         title={event?.title}
         subheader={moment(event?.date.toDate()).format("Do MMMM YYYY h:mm a")}
         action={
+          !past &&
           onOptions && (
             <IconButton onClick={onOptions}>
               <MoreIcon />
