@@ -7,7 +7,7 @@ import { AuthenticationContextState } from "./types";
  */
 const AuthenticationContext = React.createContext<AuthenticationContextState>({
   loading: true,
-  user: null
+  user: null,
 });
 
 export default AuthenticationContext;
@@ -15,3 +15,15 @@ export default AuthenticationContext;
 export { AuthenticationProvider } from "./AuthenticationProvider";
 
 export * from "./hooks";
+
+function useAuthStateContext() {
+  const context = React.useContext(AuthenticationContext);
+  if (context === undefined) {
+    throw new Error(
+      "useAuthAction must be used within the Authentication Provider"
+    );
+  }
+  return context;
+}
+
+export { useAuthStateContext };
