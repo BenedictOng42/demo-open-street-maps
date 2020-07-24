@@ -7,6 +7,7 @@ import { AuthenticationContextState } from "./types";
  */
 const AuthenticationContext = React.createContext<AuthenticationContextState>({
   loading: true,
+  location: null,
   user: null,
 });
 
