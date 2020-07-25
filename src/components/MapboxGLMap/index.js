@@ -9,13 +9,23 @@ const styles = {
   position: "absolute",
 };
 
+const addMarkerIfNeeded = (map, long, lat) => {
+  if (long && lat) {
+    new mapboxgl.Marker().setLngLat([long, lat]).addTo(map);
+  }
+};
 const MapboxGLMap = (props) => {
   const [map, setMap] = useState(null);
   const { location } = useAuthStateContext();
   const mapContainer = useRef(null);
-  const longLat = {
-    long: props.longitude || location.coords.longitude || 0,
-    lat: props.latitude || location.coords.latitude || 0,
+  const destinationLngLat = {
+    long: props.longitude,
+    lat: props.latitude,
+  };
+
+  const vicinity = {
+    long: props.longitude || location?.coords.longitude || 145.0737,
+    lat: props.latitude || location?.coords.latitude || -37.82067,
   };
 
   useEffect(() => {
@@ -24,9 +34,10 @@ const MapboxGLMap = (props) => {
       const map = new mapboxgl.Map({
         container: mapContainer.current,
         style: "mapbox://styles/mapbox/streets-v11", // stylesheet location
-        center: [longLat.long, longLat.lat],
+        center: [vicinity.long, vicinity.lat],
         zoom: 10,
       });
+
       const locator = new mapboxgl.GeolocateControl({
         positionOptions: {
           enableHighAccuracy: true,
@@ -37,6 +48,7 @@ const MapboxGLMap = (props) => {
       });
 
       map.addControl(locator);
+
       map.on("load", () => {
         setMap(map);
         map.resize();
@@ -47,14 +59,15 @@ const MapboxGLMap = (props) => {
   }, [map]);
 
   useEffect(() => {
-    if (map) {
+    if (map && destinationLngLat.long && destinationLngLat.lat) {
       map.flyTo({
-        center: [longLat.long, longLat.lat],
+        center: [destinationLngLat.long, destinationLngLat.lat],
         essential: true, // this animation is considered essential with respect to prefers-reduced-motion
-        zoom: 10,
+        zoom: 15,
       });
+      addMarkerIfNeeded(map, destinationLngLat.long, destinationLngLat.lat);
     }
-  }, [longLat.long, longLat.lat, map]);
+  }, [destinationLngLat.long, destinationLngLat.lat, map]);
 
   return <div ref={(el) => (mapContainer.current = el)} style={styles} />;
 };

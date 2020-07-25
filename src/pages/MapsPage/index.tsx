@@ -8,12 +8,12 @@ import { Event } from "../../types";
 const MapsPage: FC = () => {
   const { id: eventId } = useParams<{ id?: string }>();
   const [event, error] = useDocumentData<Event>(`events/${eventId}`);
-
+  console.log(event);
   return (
     <>
       <EventCard />
       <MapboxGLMap
-        // longitude={event?.location.longitude}
+        longitude={event?.location.longitude}
         latitude={event?.location.latitude}
       />
     </>
