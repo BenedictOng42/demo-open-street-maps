@@ -23,18 +23,22 @@ const App: FC = () => {
         <AuthenticationProvider>
           <LoginGate>
             <BrowserRouter>
-              <Header />
-              <Switch>
-                <Route exact path="/maps/:id?">
-                  <MapsPage />
-                </Route>
-                <Route exact path="/events">
-                  <EventsPage />
-                </Route>
-                <Route path="/">
-                  <Redirect to="/events" />
-                </Route>
-              </Switch>
+              <div
+                style={{ height: "100vh", display: "flex", flexFlow: "column" }}
+              >
+                <Header />
+                <Switch>
+                  <Route exact path="/maps/:id?">
+                    <MapsPage />
+                  </Route>
+                  <Route exact path="/events">
+                    <EventsPage />
+                  </Route>
+                  <Route path="/">
+                    <Redirect to="/events" />
+                  </Route>
+                </Switch>
+              </div>
             </BrowserRouter>
           </LoginGate>
         </AuthenticationProvider>

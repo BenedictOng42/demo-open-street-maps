@@ -22,7 +22,7 @@ const SignInPage = () => {
   return (
     <Container maxWidth="xs" className={classes.container}>
       <Typography variant="h6" className={classes.title}>
-        Meetings Demo Fooplord
+        Event Planner
       </Typography>
       <Button onClick={onSignInHandler} disabled={loading}>
         Sign in

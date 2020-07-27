@@ -14,7 +14,7 @@ const Header: FC<HeaderProps> = ({ className }) => {
   return (
     <Centered className={clsx(className, classes.header)}>
       <Typography variant="h4" className={classes.title}>
-        <b>Demo Event Planner</b>
+        <b>Event Planner</b>
       </Typography>
       <Navigation />
     </Centered>

@@ -10,6 +10,4 @@ export interface AuthenticationContextState {
    * The currently authenticated user if available.
    */
   user: firebase.User | null;
-
-  location: Position | null;
 }

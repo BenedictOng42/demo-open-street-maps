@@ -6,4 +6,10 @@ export interface Event {
   description: string;
   date: firestore.Timestamp;
   location: firestore.GeoPoint;
+  address: string;
+}
+
+export interface DestLoc {
+  address: string;
+  location: number[];
 }

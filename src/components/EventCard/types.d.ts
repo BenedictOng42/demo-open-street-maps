@@ -5,6 +5,7 @@ export interface EventCardProps {
    * The event to show in the event card.
    */
   event?: Event;
+  viewMapButton?: boolean;
 
   /**
    * Callback for when the options button is clicked.

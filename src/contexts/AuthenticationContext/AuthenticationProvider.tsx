@@ -12,7 +12,6 @@ export const AuthenticationProvider: FC = ({ children }) => {
 
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<firebase.User | null>(null);
-  const [location, setLocation] = useState<Position | null>(null);
   useEffect(() => {
     if (auth) {
       let cancelled = false;
@@ -28,20 +27,13 @@ export const AuthenticationProvider: FC = ({ children }) => {
         unsubscribe();
       };
     }
-  }, [auth, setLoading, setUser, setLocation]);
-
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition((data) => {
-      setLocation(data);
-    });
-  }, [setLocation, location]);
+  }, [auth, setLoading, setUser]);
 
   return (
     <AuthenticationContext.Provider
       value={{
         loading,
         user,
-        location,
       }}
     >
       {children}
